@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>JULES MOURNE | OPERATIONAL STRATEGY</title>
+    
     <!-- Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Montserrat:wght@200;400;600&family=Inter:wght@200;400&display=swap" rel="stylesheet">
+    
+    <!-- Tally Popup Widget -->
+    <script src="https://tally.so/widgets/embed.js"></script>
+
     <style>
         :root {
-            /* Brand Style: Champagne Gold and Obsidian */
             --jm-gold: #c5a059;
             --obsidian-deep: #020202;
             --obsidian-surface: #0a0a0a;
@@ -30,12 +34,10 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            /* Liquid Obsidian Gradient */
             background-image: 
                 radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
                 linear-gradient(180deg, var(--obsidian-deep) 0%, var(--obsidian-surface) 100%);
             background-attachment: fixed;
-            transition: background 0.3s ease;
         }
 
         header {
@@ -93,7 +95,7 @@
         .subtitle {
             font-size: 1.25rem;
             font-weight: 200;
-            line-height: 1.4; /* Tightened leading */
+            line-height: 1.4;
             color: var(--text-muted);
             border-left: 1px solid var(--jm-gold);
             padding-left: 1.5rem;
@@ -101,7 +103,6 @@
             max-width: 550px;
         }
 
-        /* Pillars - Monolithic Layout */
         .mastery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -131,7 +132,6 @@
             line-height: 1.4;
         }
 
-        /* Dispatch Section */
         .dispatch-section {
             text-align: center;
             background: rgba(197, 160, 89, 0.02);
@@ -171,10 +171,7 @@
             font-weight: 400;
             letter-spacing: 0.2em;
             font-size: 0.75rem;
-            transition: border 0.4s;
         }
-
-        .dispatch-input:focus { border-bottom: 1px solid var(--jm-gold); }
 
         .dispatch-btn {
             background: transparent;
@@ -185,51 +182,11 @@
             letter-spacing: 0.3em;
             font-size: 0.7rem;
             cursor: pointer;
-            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
         }
 
-        .dispatch-btn:hover {
-            background: var(--jm-gold);
-            color: var(--obsidian-deep);
-            letter-spacing: 0.45em;
-        }
-
-        /* Footer */
-        footer {
-            padding: 4rem 1.5rem 180px 1.5rem;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-bottom: 3.5rem;
-        }
-
-        .social-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover { color: var(--jm-gold); text-shadow: 0 0 10px rgba(197, 160, 89, 0.4); }
-
-        .footer-legal {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.1);
-            text-transform: uppercase;
-            letter-spacing: 0.4em;
-        }
-
-        /* Unified Command Center */
+        /* Command Center - Balanced Grid */
         .command-center {
             display: flex;
             gap: 15px;
@@ -245,7 +202,12 @@
                 padding: 1.5rem 1.5rem calc(1.5rem + var(--safe-area-bottom));
                 backdrop-filter: blur(25px);
                 -webkit-backdrop-filter: blur(25px);
-                background: rgba(2, 2, 2, 0.7);
+                background: rgba(2, 2, 2, 0.75);
+            }
+            /* Force buttons to share width equally on mobile */
+            .btn {
+                flex: 1 1 50% !important; 
+                padding: 0 5px; /* Minimal internal padding to prevent text-to-edge */
             }
         }
 
@@ -255,10 +217,10 @@
                 width: fit-content;
                 padding: 0;
             }
+            .btn { width: 260px; flex: none; }
         }
 
         .btn {
-            flex: 1;
             height: 68px;
             display: flex;
             align-items: center;
@@ -271,6 +233,10 @@
             letter-spacing: 0.25em;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             border-radius: 0;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
         }
 
         .btn-secondary {
@@ -283,11 +249,9 @@
             background-color: var(--jm-gold);
             color: var(--obsidian-deep);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-            flex: 1.8;
         }
 
         @media (min-width: 768px) {
-            .btn { width: 260px; flex: none; }
             header { flex-direction: row; justify-content: space-between; padding: 4rem 6%; }
             .moth-logo { width: 60px; }
             .signature-logo { width: 220px; }
@@ -297,8 +261,6 @@
             footer { padding-bottom: 6rem; }
         }
 
-        .btn:active { transform: scale(0.97); }
-
         .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
@@ -306,7 +268,7 @@
 <body>
 
     <header>
-        <img src="moth.svg" alt="Death's Head Moth" class="moth-logo reveal">
+        <img src="moth.svg" alt="" class="moth-logo reveal">
         <img src="signature.svg" alt="Jules Mourne" class="signature-logo reveal">
     </header>
 
@@ -317,8 +279,15 @@
                 <p class="reveal subtitle">Direct creative direction and operational strategy for visionaries navigating lasting change. We engineer the structural architecture required to command your niche.</p>
                 
                 <nav class="command-center reveal">
-                    <a href="https://portal.julesmourne.com" class="btn btn-secondary">Vault Access</a>
-                    <a href="mailto:critpathdigital@gmail.com" class="btn btn-primary">Get Invited</a>
+                    <a href="https://app.plane.so/mourne/" class="btn btn-secondary">Vault Access</a>
+                    
+                    <button 
+                        data-tally-open="A7lYKW" 
+                        data-tally-layout="modal" 
+                        data-tally-width="600"
+                        class="btn btn-primary">
+                        Get Invited
+                    </button>
                 </nav>
             </div>
         </section>
@@ -353,7 +322,7 @@
     <footer>
         <div class="social-links reveal">
             <a href="https://www.instagram.com/mournefulcreations/">Instagram</a>
-            <a href="#">Threads</a>
+            <a href="https://www.threads.net/@mournefulcreations">Threads</a>
             <a href="#">Facebook</a>
             <a href="https://www.tiktok.com/@julesmourne/">TikTok</a>
         </div>
@@ -378,7 +347,6 @@
             }
         });
 
-        // High-Fidelity Mouse Tracking for the Obsidian Liquid Texture
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth) * 100;
             const y = (e.clientY / window.innerHeight) * 100;
