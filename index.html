@@ -3,283 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>JULES MOURNE | OPERATIONAL STRATEGY</title>
+    <title>JULES MOURNE | THE ARCHITECTURE OF YOUR NEXT ERA</title>
     
     <!-- Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Montserrat:wght@200;400;600&family=Inter:wght@200;400&display=swap" rel="stylesheet">
     
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
     <!-- Tally Popup Widget -->
     <script src="https://tally.so/widgets/embed.js"></script>
-
-    <style>
-        :root {
-            --jm-gold: #c5a059;
-            --obsidian-deep: #020202;
-            --obsidian-surface: #0a0a0a;
-            --text-main: #ffffff;
-            --text-muted: rgba(255, 255, 255, 0.45);
-            --safe-area-bottom: env(safe-area-inset-bottom);
-        }
-
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            -webkit-font-smoothing: antialiased;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            background-color: var(--obsidian-deep);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.04) 0%, transparent 70%),
-                linear-gradient(180deg, var(--obsidian-deep) 0%, var(--obsidian-surface) 100%);
-            background-attachment: fixed;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2.5rem 1.5rem;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .moth-logo {
-            width: 50px;
-            height: auto;
-            opacity: 0.9;
-            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.15));
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .signature-logo {
-            width: 180px;
-            height: auto;
-            filter: brightness(1.1);
-        }
-
-        section {
-            padding: 5rem 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-top: 60px;
-        }
-
-        .hero-content { max-width: 700px; }
-
-        h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-style: italic;
-            font-size: clamp(3.2rem, 15vw, 6.5rem);
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            letter-spacing: -0.04em;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            font-weight: 200;
-            line-height: 1.4;
-            color: var(--text-muted);
-            border-left: 1px solid var(--jm-gold);
-            padding-left: 1.5rem;
-            margin-bottom: 3.5rem;
-            max-width: 550px;
-        }
-
-        .mastery-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .mastery-item {
-            border-top: 1px solid rgba(197, 160, 89, 0.15);
-            padding-top: 1.2rem;
-        }
-
-        .mastery-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--jm-gold);
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.35em;
-        }
-
-        .mastery-item p {
-            font-weight: 400;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
-
-        .dispatch-section {
-            text-align: center;
-            background: rgba(197, 160, 89, 0.02);
-            border-top: 1px solid rgba(197, 160, 89, 0.1);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-            margin: 5rem 0;
-            padding: 5rem 1.5rem;
-        }
-
-        .dispatch-section h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: clamp(2.4rem, 10vw, 4rem);
-            margin-bottom: 1.2rem;
-            letter-spacing: -0.02em;
-        }
-
-        .dispatch-form {
-            margin-top: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            max-width: 420px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .dispatch-input {
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.3);
-            padding: 1rem;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            outline: none;
-            font-weight: 400;
-            letter-spacing: 0.2em;
-            font-size: 0.75rem;
-        }
-
-        .dispatch-btn {
-            background: transparent;
-            color: var(--jm-gold);
-            border: 1px solid var(--jm-gold);
-            padding: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-size: 0.7rem;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-        }
-
-        /* Command Center - Balanced Grid */
-        .command-center {
-            display: flex;
-            gap: 15px;
-            z-index: 2000;
-        }
-
-        @media (max-width: 767px) {
-            .command-center {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                padding: 1.5rem 1.5rem calc(1.5rem + var(--safe-area-bottom));
-                backdrop-filter: blur(25px);
-                -webkit-backdrop-filter: blur(25px);
-                background: rgba(2, 2, 2, 0.75);
-            }
-            /* Force buttons to share width equally on mobile */
-            .btn {
-                flex: 1 1 50% !important; 
-                padding: 0 5px; /* Minimal internal padding to prevent text-to-edge */
-            }
-        }
-
-        @media (min-width: 768px) {
-            .command-center {
-                position: relative;
-                width: fit-content;
-                padding: 0;
-            }
-            .btn { width: 260px; flex: none; }
-        }
-
-        .btn {
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.25em;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            border-radius: 0;
-            border: none;
-            cursor: pointer;
-            outline: none;
-            text-align: center;
-        }
-
-        .btn-secondary {
-            color: var(--jm-gold);
-            border: 1px solid rgba(197, 160, 89, 0.25);
-            background: rgba(5, 5, 5, 0.5);
-        }
-
-        .btn-primary {
-            background-color: var(--jm-gold);
-            color: var(--obsidian-deep);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        @media (min-width: 768px) {
-            header { flex-direction: row; justify-content: space-between; padding: 4rem 6%; }
-            .moth-logo { width: 60px; }
-            .signature-logo { width: 220px; }
-            main { padding: 0 12%; }
-            .hero { padding: 0; }
-            .mastery-grid { grid-template-columns: repeat(3, 1fr); gap: 3rem; }
-            footer { padding-bottom: 6rem; }
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
 </head>
 <body>
 
     <header>
-        <img src="moth.svg" alt="" class="moth-logo reveal">
-        <img src="signature.svg" alt="Jules Mourne" class="signature-logo reveal">
+        <img src="assets/vectors/moth.svg" alt="" class="moth-logo reveal">
+        <img src="assets/vectors/sig.svg" alt="Jules Mourne" class="signature-logo reveal">
     </header>
 
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1 class="reveal">Plateaus<br>Break Here.</h1>
-                <p class="reveal subtitle">Direct creative direction and operational strategy for visionaries navigating lasting change. We engineer the structural architecture required to command your niche.</p>
+                <h1 class="reveal">The Architecture<br>of Your Next Era.</h1>
+                <p class="reveal subtitle">Transformative strategy and creative direction for service firms and visionary creators building legacies.</p>
                 
                 <nav class="command-center reveal">
-                    <a href="https://app.plane.so/mourne/" class="btn btn-secondary">Vault Access</a>
+                    <a href="https://app.plane.so/mourne/" class="btn btn-secondary" target="_blank">Vault Access</a>
                     
                     <button 
                         data-tally-open="A7lYKW" 
@@ -308,53 +59,18 @@
                 </div>
             </div>
         </section>
-
-        <section class="dispatch-section reveal">
-            <h2>The Intelligence Dispatch</h2>
-            <p style="font-weight: 400; color: var(--text-muted); font-family: 'Montserrat'; letter-spacing: 0.4em; font-size: 0.65rem; text-transform: uppercase;">Unseen structures of high-end strategy.</p>
-            <form class="dispatch-form" action="#" method="POST" onsubmit="event.preventDefault();">
-                <input type="email" class="dispatch-input" placeholder="EMAIL ADDRESS" required>
-                <button type="submit" class="dispatch-btn">Request Access</button>
-            </form>
-        </section>
     </main>
 
-    <footer>
-        <div class="social-links reveal">
-            <a href="https://www.instagram.com/mournefulcreations/">Instagram</a>
-            <a href="https://www.threads.net/@mournefulcreations">Threads</a>
-            <a href="#">Facebook</a>
-            <a href="https://www.tiktok.com/@julesmourne/">TikTok</a>
+    <footer class="reveal">
+        <div class="social-links">
+            <a href="https://www.instagram.com/mournefulcreations/" target="_blank">Instagram</a>
+            <a href="https://www.threads.net/@mournefulcreations" target="_blank">Threads</a>
+            <a href="https://www.tiktok.com/@julesmourne/" target="_blank">TikTok</a>
         </div>
-        <p class="footer-legal reveal">© 2026 JULES MOURNE. BY INVITATION ONLY.</p>
+        <p class="footer-legal">© 2026 JULES MOURNE. BY INVITATION ONLY.</p>
     </footer>
 
-    <script>
-        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, observerOptions);
-
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-        });
-
-        window.addEventListener('scroll', () => {
-            const moth = document.querySelector('.moth-logo');
-            if (moth) {
-                const rotation = window.scrollY * 0.05;
-                moth.style.transform = `rotate(${rotation}deg)`;
-            }
-        });
-
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            document.body.style.backgroundImage = `
-                radial-gradient(circle at ${x}% ${y}%, rgba(197, 160, 89, 0.08) 0%, transparent 60%),
-                linear-gradient(180deg, var(--obsidian-deep) 0%, var(--obsidian-surface) 100%)
-            `;
-        });
-    </script>
+    <!-- Core Logic -->
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

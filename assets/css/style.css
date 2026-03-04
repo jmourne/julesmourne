@@ -1,0 +1,406 @@
+:root {
+    --jm-gold: #c5a059;
+    --obsidian-deep: #050505;
+    --obsidian-surface: #0a0a0a;
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.45);
+    --safe-area-bottom: env(safe-area-inset-bottom);
+    --cyber-glow: rgba(197, 160, 89, 0.15);
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-font-smoothing: antialiased; 
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--obsidian-deep);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* THE CYBER-STONE ARCHITECTURE 
+   Marrying organic stone texture with a high-precision digital grid.
+   Layered behind the vignette to ensure seamless edges.
+*/
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Layer 1 & 2: Grid lines
+       Layer 3: Chiseled Stone SVG Logic
+    */
+    background-image: 
+        linear-gradient(rgba(197, 160, 89, 0.05) 1.5px, transparent 1.5px),
+        linear-gradient(90deg, rgba(197, 160, 89, 0.05) 1.5px, transparent 1.5px),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 800 800' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='chiseledStone'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='5' seed='42'/%3E%3CfeDiffuseLighting in='noise' lighting-color='white' surfaceScale='5'%3E%3CfeDistantLight azimuth='45' elevation='50'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23chiseledStone)' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 80px 80px, 80px 80px, 100% 100%;
+    
+    /* Overlay creates a much more integrated "carved" look than screen */
+    mix-blend-mode: overlay;
+    opacity: 0.6;
+    z-index: -2; /* Moved behind the vignette */
+    pointer-events: none;
+    filter: contrast(150%) brightness(60%);
+}
+
+/* VIGNETTE & DYNAMIC LIGHTING 
+   Placed above the texture to "pin" the edges to pure black and prevent separation.
+*/
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.08), transparent 40%),
+        radial-gradient(circle at center, transparent 0%, var(--obsidian-deep) 100%);
+    z-index: -1; /* Placed on top of the texture layer */
+    pointer-events: none;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: linear-gradient(to bottom, var(--obsidian-deep) 0%, transparent 100%);
+}
+
+@media (min-width: 768px) {
+    header { 
+        flex-direction: row; 
+        justify-content: space-between; 
+        padding: 4rem 8%; 
+        gap: 2rem;
+    }
+}
+
+/* BRAND ASSETS - Balanced Proportions */
+.moth-logo {
+    width: 65px;
+    height: auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.4));
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.signature-logo {
+    width: 220px;
+    height: auto;
+    filter: brightness(1.5) sepia(0.15);
+}
+
+@media (min-width: 768px) {
+    .moth-logo { width: 120px; } 
+    .signature-logo { width: 380px; } 
+}
+
+section {
+    padding: 5rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center; 
+    padding-top: 140px;
+}
+
+@media (min-width: 768px) {
+    .hero { padding-top: 200px; }
+}
+
+.hero-content { 
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(3.2rem, 15vw, 8.5rem);
+    line-height: 0.85;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.05em;
+    color: #ffffff;
+    text-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    font-weight: 200;
+    line-height: 1.8;
+    color: var(--text-muted);
+    border-top: 1px solid var(--jm-gold);
+    padding-top: 2rem;
+    margin: 0 auto 5rem;
+    max-width: 600px;
+}
+
+@media (min-width: 768px) {
+    .subtitle {
+        font-size: 1.5rem;
+        padding-top: 2.5rem;
+        margin-bottom: 7rem;
+    }
+}
+
+.command-center {
+    display: flex;
+    gap: 20px;
+    z-index: 2000;
+    justify-content: center;
+    width: 100%;
+}
+
+/* CYBER-SOPHISTICATED BUTTONS WITH BORDER SURGE */
+.btn {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5em; 
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius: 0;
+    cursor: pointer;
+    text-align: center;
+    position: relative;
+    overflow: hidden; 
+    z-index: 1;
+}
+
+/* The Surge Effect - Moving border energy */
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px; /* Border thickness */
+    background: conic-gradient(
+        from var(--surge-angle, 0deg), 
+        transparent 0%, 
+        var(--jm-gold) 15%, 
+        transparent 30%
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+@property --surge-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes surgeRotate {
+    to { --surge-angle: 360deg; }
+}
+
+.btn:hover::before {
+    opacity: 1;
+    animation: surgeRotate 1.5s linear infinite;
+}
+
+.btn-secondary {
+    color: var(--jm-gold);
+    border: 1px solid rgba(197, 160, 89, 0.15);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px);
+}
+
+.btn-secondary:hover {
+    color: #ffffff;
+    background: rgba(197, 160, 89, 0.03);
+    border-color: transparent;
+}
+
+.btn-primary {
+    background-color: var(--jm-gold);
+    color: var(--obsidian-deep);
+    border: 1px solid var(--jm-gold);
+}
+
+/* For primary, the surge is high-intensity white/gold */
+.btn-primary::before {
+    background: conic-gradient(
+        from var(--surge-angle, 0deg), 
+        transparent 0%, 
+        #ffffff 15%, 
+        transparent 30%
+    );
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px);
+    background-color: var(--obsidian-deep);
+    color: var(--jm-gold);
+}
+
+@media (max-width: 767px) {
+    .command-center {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 1.5rem calc(1.5rem + var(--safe-area-bottom));
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        background: rgba(2, 2, 2, 0.95);
+        border-top: 1px solid rgba(197, 160, 89, 0.2);
+    }
+    .btn { flex: 1; height: 68px; font-size: 0.7rem; }
+}
+
+@media (min-width: 768px) {
+    .command-center { width: fit-content; }
+    .btn { width: 300px; }
+}
+
+/* MASTERIES GRID */
+.mastery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5rem;
+    margin-top: 8rem;
+}
+
+@media (min-width: 768px) {
+    .mastery-grid { grid-template-columns: repeat(3, 1fr); gap: 6rem; }
+}
+
+.mastery-item {
+    border-top: 1px solid rgba(197, 160, 89, 0.2);
+    padding-top: 4rem;
+    transition: all 0.6s ease;
+    position: relative;
+}
+
+.mastery-item::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    right: 0;
+    width: 20px;
+    height: 1px;
+    background: var(--jm-gold);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.mastery-item:hover::before {
+    opacity: 1;
+}
+
+.mastery-item:hover {
+    border-color: var(--jm-gold);
+    transform: translateY(-10px);
+}
+
+.mastery-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--jm-gold);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+}
+
+.mastery-item p {
+    font-weight: 200;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 2;
+}
+
+/* FOOTER */
+footer {
+    padding: 15rem 1.5rem 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6rem;
+}
+
+@media (max-width: 767px) {
+    footer { padding-bottom: calc(20rem + var(--safe-area-bottom)); }
+}
+
+.social-links {
+    display: flex;
+    gap: 4rem;
+}
+
+.social-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8em;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.social-links a:hover {
+    opacity: 1;
+    color: var(--jm-gold);
+}
+
+.footer-legal {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 1.4em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.reveal { 
+    opacity: 0; 
+    transform: translateY(50px); 
+    transition: all 2s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+.reveal.active { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
