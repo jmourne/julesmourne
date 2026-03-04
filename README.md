@@ -2,8 +2,6 @@
 
 **Jules Mourne | Creative Direction & Operational Strategy**
 
-This repository serves as the live test environment for [julesmourne.com](https://jmourne.github.io/julesmourne/).
-
 ---
 
 ## The Vision
